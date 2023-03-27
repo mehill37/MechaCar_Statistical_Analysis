@@ -1,0 +1,15 @@
+library(dplyr)
+MechaCars <- read.csv(file="C:/Users/Mary/Data Visualizations BC/Analysis_Projects/MechaCar_Statistical_Analysis/MechaCar_mpg.csv")
+view(MechaCars)
+lm(mpg ~ vehicle_length + vehicle_weight + spoiler_angle + ground_clearance + AWD,data=MechaCars)
+summary(lm(mpg ~ vehicle_length + vehicle_weight + spoiler_angle + ground_clearance + AWD,data=MechaCars))
+Coils <- read.csv(file="C:/Users/Mary/Data Visualizations BC/Analysis_Projects/MechaCar_Statistical_Analysis/Suspension_Coil.csv")
+total_summary <- summarize(Coils, meanPSI=mean(PSI), medianPSI=median(PSI), variancePSI=var(PSI), SDPSI=sd(PSI))
+lot_grouping <- group_by(Coils, Manufacturing_Lot)
+lot_summary <- summarize(lot_grouping, Mean=mean(PSI), Median=median(PSI), Variance=var(PSI), SD=sd(PSI))
+
+# Part 3 T-Tests on Suspension Coils
+t.test(Coils$PSI, mu = mean(Coils$PSI)) # determines the PSI across all manufacturing
+t.test(subset(Coils$PSI,Coils$Manufacturing_Lot == "Lot1"),mu=mean(Coils$PSI)) # Lot 1
+t.test(subset(Coils$PSI,Coils$Manufacturing_Lot == "Lot2"),mu=mean(Coils$PSI)) # Lot 2
+t.test(subset(Coils$PSI,Coils$Manufacturing_Lot == "Lot3"),mu=mean(Coils$PSI)) # Lot 3
