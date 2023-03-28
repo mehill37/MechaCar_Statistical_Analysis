@@ -50,7 +50,7 @@ total_summary <- summarize(Coils, meanPSI=mean(PSI), medianPSI=median(PSI), vari
 
 The variance of suspension coils for all manufacturing lots in total is 62.29 lbs/sq.in. . This meets the design specifications and does not exceed 100 lbs./sq.in. .
 
-The data is then grouped by Manufacturing Lot to summarize the statistics for PSI within each lot. 
+The data is grouped by Manufacturing Lot to summarize the statistics for PSI within each lot. 
 
 ```
 lot_grouping <- group_by(Coils, Manufacturing_Lot)
@@ -62,7 +62,7 @@ lot_summary <- summarize(lot_grouping, Mean=mean(PSI), Median=median(PSI), Varia
 <img src="https://github.com/mehill37/MechaCar_Statistical_Analysis/blob/82429a5eaf5772f59425806c708f3dd7af77c4ff/images/lot_summary.png">
 </p><br/>
 
-By breaking down the statistics for each lot, we can see that in Lot 3, there is a variance in PSI of 170.29 lbs/sq.in. . This exceeds 100 PSI and no longer meets specifications.
+By breaking down the statistics for each lot, in Lot 3 there is a variance in PSI of 170.29 lbs/sq.in. . This exceeds 100 PSI and no longer meets specifications.
 
 ## T-tests on Suspension Coils
 
@@ -72,27 +72,52 @@ The question of whether PSI across all manufacturing lots is statistically diffe
 <img src="https://github.com/mehill37/MechaCar_Statistical_Analysis/blob/82429a5eaf5772f59425806c708f3dd7af77c4ff/images/t_test.png">
 </p><br/>
 
-Here, we can see the results showing that the p-value = 1, which means that the mean of the PSI across all lots is not statistically different from the population mean of PSI of 1,500. We fail to reject the null hypothesis.
+The results show the p-value = 1, meaning the mean of the PSI across all lots is not statistically different from the population mean of PSI of 1,500. Failed to reject the null hypothesis.
 
-Now, we will run similar t-tests for each lot to compare PSI with the mean population PSI of 1,500.
+Running similar t-tests for each lot to compare PSI with the mean population PSI of 1,500.
+
 
 Lot 1:
 <p align="center">
 <img src="https://github.com/mehill37/MechaCar_Statistical_Analysis/blob/82429a5eaf5772f59425806c708f3dd7af77c4ff/images/t_test_Lot1.png">
 </p><br/>
-We fail to reject the null hypothesis, because the P-value is less than 0.0001. 
+Lot 1 failed to reject the null hypothesis, because the P-value is less than 0.0001. 
+
 
 Lot 2: 
 <p align="center">
 <img src="https://github.com/mehill37/MechaCar_Statistical_Analysis/blob/82429a5eaf5772f59425806c708f3dd7af77c4ff/images/t_test_Lot2.png">
 </p><br/>
-We fail to reject the null hypothesis, because the p-value is 0.0006.
+Lot 2 failed to reject the null hypothesis, because the p-value is 0.0006.
+
 
 Lot 3: 
 <p align="center">
 <img src="https://github.com/mehill37/MechaCar_Statistical_Analysis/blob/82429a5eaf5772f59425806c708f3dd7af77c4ff/images/t_test_Lot3.png">
 </p><br/>
-For Lot 3 we reject the null hypothesis, because the p-value is 0.1589. This means that the PSI values on Lot 3 could as much be a result of chance as any other factor measured.
+For Lot 3 the null hypothesis is rejected, because the p-value is 0.1589. The PSI values on Lot 3 could be a result of chance just as any other factor measured.
 
 ## Study Design: MechaCar vs Competition
+
+To quantify how MechaCar performs against the competition; an analysis of the metrics that are important to consumers:
+
+#### Metrics
+* Price
+* Gas mileage
+* Safety rating
+
+#### Hypothesis
+* Null Hypotheses: 
+  * MechaCar and the competition have no difference between their price.
+  * MechaCar and the competition have no difference between their gas mileage ratings.
+  * MechaCar and the competition have no difference between their safety ratings.
+
+* Alternative Hypotheses: 
+  * MechaCar has a lower price than the competition.
+  * MechaCar has a higher gas mileage rating than the competition.
+  * MechaCar has a higher safety rating than the competition.
+
+#### Statistical Testing
+
+A two-tailed t-test is used to describe the differences between the distribution from the two samples since the data type is independent and branched. A multiple linear regression is used to find the factors that have the highest predictability and correlation with the list selling price, dependent variable, which is the combination that will have the greatest impact on price. For these tests I would need extensive data sets from each car company detailing the price, gas mileage and safety rating for multiple competitors.
 
